@@ -5,15 +5,24 @@
 		<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/bootstrap.min.css">
 	</head>
 	<body ng-controller="main">
-		<button>{{name}}</button>
-		<main>
-
+		
+		<main class="container">
+				<div class="row">
+				<h4>Users List (last visit)</h4>
+				<div google-chart chart="chart" style="{{chart.cssStyle}}"></div>
+				</div>
+			</div>
 		</main>
 
 		<script src="bower_components/jquery/jquery.min.js"></script>
 		<script src="bower_components/angular/angular.min.js"></script>
+		<script src="bower_components/angular-google-chart/ng-google-chart.js"></script>
 		<script src="bower_components/bootstrap/bootstrap.min.js"></script>
 		<script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
 		<script src="js/app.js"></script>
+
+		<!-- Library from CDN -->
+		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
 	</body>
 </html>

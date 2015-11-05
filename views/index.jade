@@ -1,0 +1,7 @@
+extends layout
+
+block content	
+	main.container(ng-controller='main')
+		div(google-chart chart='chart')
+			h4 Users List #{test}
+			div(ng-repeat='user in users') {{user}}

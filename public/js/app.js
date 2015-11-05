@@ -1,32 +1,39 @@
 var SD = angular.module('SD-data', [
-	'ui.router'
+	'ui.router',
+	'googlechart'
 ]);
 
-// SD.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 
-// 	function ($stateProvider, $urlRouterProvider, $locationProvider) {
-// 		$stateProvider
-// 			.state('Charts', {
-// 				url: '/charts',
-// 				templateUrl: '../views/charts.html',
-// 				controller: 'ChartCtrl'
-// 			});
+SD.controller('main', function($scope, $http, $q){
+	
+	listUser();
 
-// 		$locationProvider.html5Mode({
-// 			enabled: true,
-// 			requireBase: false
-// 		});
-// }]);
+	var chart1 = {};
 
-SD.controller('main', function($scope, $http){
-	$scope.name = 'charts';
-	$http.get('/api/user')
-			.then(function successCallback(res) {
-				console.log(res);
-				$scope.name = res.data.users[0].name;
-			},
-			function errCallback(err) {
-				console.log(err);
-			});
+	chart1.type = 'LineChart';
+
+	chart1.options = {
+		displayExactValues: true,
+		is3D: true,
+		animation: {startup: true},
+		title: 'Users / Hour',
+		curveType: 'function'
+	};
+
+	function listUser () {
+		$scope.users = [];
+		$http.get('/api/user')
+					.then(function successCallback(res) {
+						chart1.data = [
+							['Time' , 'Users']
+						];
+						angular.forEach(res.data.users, function(user, index) {
+							var data = [];
+							data.push(user.hour);
+							data.push(user.count)
+							chart1.data.push(data);
+						});
+						$scope.chart = chart1;
+					});
+	}
 })
-
 ;

@@ -1,7 +1,7 @@
 'use strict'
-var db = require('./dbControllers');
+var db 			= require('./dbControllers');
 
-module.exports.showUser = function* (next) {
+module.exports.showUser = function *() {
 	var users = {};
 
 	yield db.query()

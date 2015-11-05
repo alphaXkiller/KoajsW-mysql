@@ -4,16 +4,20 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
-  "author": "Franklin Huang",
   "license": "ISC",
   "dependencies": {
     "bower": "^1.6.2",
+    "co": "^4.6.0",
+    "co-views": "^2.1.0",
+    "jade": "^1.11.0",
     "koa": "^1.0.0",
     "koa-bodyparser": "^2.0.1",
     "koa-router": "^5.2.1",
     "koa-static": "^1.4.9",
-    "mysql": "^2.9.0"
+    "mysql": "^2.9.0",
+    "q": "^1.4.1",
+    "underscore": "^1.8.3"
   }
 }

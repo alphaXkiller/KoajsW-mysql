@@ -1,5 +1,5 @@
 var mysql = require('mysql');
-var config = require('../dbconfig');
+var config = require('../config').db;
 var db = mysql.createConnection(config);
 
 module.exports.connect = function () {
@@ -12,10 +12,10 @@ module.exports.connect = function () {
 	});
 };
 
-module.exports.query = function (cb) {
+module.exports.query = function () {
 	var query = new Promise (
 		function (res, rej) {
-			db.query('select * from users', function (err, rows) {
+			db.query('SELECT DISTINCT FROM_UNIXTIME(lastvisit, "%H") AS hour, COUNT(*) AS count FROM user GROUP BY hour limit 0, 500', function (err, rows) {
 				if(err) 
 					console.error(err);
 				res(rows);
